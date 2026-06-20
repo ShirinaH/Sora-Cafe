@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 import { getMenuPool, pickRandomSequence, MENU_ITEMS } from '../data/menuItems';
 import { getResolvedLevelConfig } from '../data/levels';
 import { playCorrectSound, playFlashSound, playWrongSound, playWinSound } from '../utils/sounds';
@@ -69,10 +69,18 @@ function reducer(state, action) {
 
 export function useGameState({ levelId, config, onWin, gameKey = 0 }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const levelConfig = getResolvedLevelConfig(levelId, config.difficulty);
-  const menuPool = getMenuPool(config.menuSet);
+  const levelConfig = useMemo(
+    () => getResolvedLevelConfig(levelId, config.difficulty),
+    [levelId, config.difficulty],
+  );
+  const menuPool = useMemo(
+    () => getMenuPool(config.menuSet),
+    [config.menuSet],
+  );
   const studyTimerRef = useRef(null);
   const feedbackTimerRef = useRef(null);
+  const onWinRef = useRef(onWin);
+  useEffect(() => { onWinRef.current = onWin; }, [onWin]);
 
   const clearTimers = useCallback(() => {
     if (studyTimerRef.current) {
@@ -137,7 +145,7 @@ export function useGameState({ levelId, config, onWin, gameKey = 0 }) {
         if (newInput.length === state.sequence.length) {
           if (config.sound) playWinSound();
           dispatch({ type: 'WON' });
-          onWin?.();
+          onWinRef.current?.();
         } else {
           feedbackTimerRef.current = setTimeout(() => {
             dispatch({ type: 'CLEAR_FEEDBACK' });
@@ -159,7 +167,7 @@ export function useGameState({ levelId, config, onWin, gameKey = 0 }) {
         }
       }
     },
-    [state, config.sound, onWin],
+    [state, config.sound],
   );
 
   const replayStudy = useCallback(() => {
