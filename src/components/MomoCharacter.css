@@ -5,18 +5,41 @@
   gap: var(--space-xs);
 }
 
+/* ── Side (small) pose ── */
 .momo-svg {
   width: 100px;
   height: 116px;
   filter: drop-shadow(0 4px 8px rgba(107, 140, 174, 0.2));
 }
 
-.momo-celebrate .momo-svg {
+/* ── Counter pose ── */
+.momo-counter-svg {
+  width: 160px;
+  height: 200px;
+  filter: drop-shadow(0 6px 12px rgba(107, 140, 174, 0.25));
+}
+
+/* ── Window peek pose ── */
+.momo-window-svg {
+  width: 90px;
+  height: 80px;
+  filter: drop-shadow(0 3px 6px rgba(107, 140, 174, 0.2));
+}
+
+/* ── Mood animations ── */
+.momo-celebrate .momo-svg,
+.momo-celebrate .momo-counter-svg,
+.momo-celebrate .momo-window-svg {
   animation: bounce 600ms ease-in-out infinite;
 }
 
-.momo-happy .momo-svg {
+.momo-happy .momo-svg,
+.momo-happy .momo-counter-svg {
   animation: pulse 400ms ease-in-out;
+}
+
+.momo-pose-window .momo-window-svg {
+  animation: gentleFloat 3s ease-in-out infinite;
 }
 
 .momo-thought {

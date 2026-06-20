@@ -1,0 +1,203 @@
+.cafe-exterior {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+.exterior-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Momo in window — positioned over right arch window */
+.momo-window-wrap {
+  position: absolute;
+  right: calc(50% - 280px);
+  top: 42%;
+  transform: translate(50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── Overlay panel ── */
+.exterior-overlay {
+  position: relative;
+  z-index: 10;
+  margin: auto 0 auto auto;
+  width: 320px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-xl) var(--space-lg);
+  background: rgba(255, 248, 240, 0.88);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid rgba(197, 217, 234, 0.6);
+  animation: slideUp 500ms ease-out both;
+}
+
+.exterior-title-card {
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+
+.exterior-subtitle {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-xs);
+}
+
+.exterior-title-card h1 {
+  font-size: 1.4rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.exterior-tagline {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.exterior-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.exterior-btn-main {
+  width: 100%;
+  font-size: 1rem;
+}
+
+.exterior-btn-secondary {
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+/* Level chips */
+.exterior-levels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: var(--space-xs);
+}
+
+.exterior-levels::-webkit-scrollbar {
+  width: 4px;
+}
+.exterior-levels::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.exterior-level-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-border);
+  background: rgba(255, 248, 240, 0.8);
+  text-align: left;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.exterior-level-chip:not(.locked):hover {
+  border-color: var(--color-accent);
+  background: rgba(184, 212, 232, 0.2);
+  transform: translateX(2px);
+}
+
+.exterior-level-chip.current {
+  border-color: var(--color-accent);
+  background: rgba(107, 140, 174, 0.12);
+}
+
+.exterior-level-chip.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.exterior-level-chip:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.elc-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent-dark);
+  flex-shrink: 0;
+}
+
+.elc-name {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.elc-icon {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+}
+
+.reset-progress {
+  display: block;
+  margin: var(--space-sm) auto 0;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  padding: var(--space-xs);
+}
+
+.reset-progress:hover {
+  color: var(--color-accent-dark);
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .cafe-exterior {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .exterior-svg {
+    height: 50vh;
+    position: relative;
+  }
+
+  .momo-window-wrap {
+    right: 8%;
+    top: 30%;
+  }
+
+  .exterior-overlay {
+    width: 100%;
+    min-height: unset;
+    margin: 0;
+    border-left: none;
+    border-top: 1px solid rgba(197, 217, 234, 0.6);
+    padding: var(--space-lg);
+  }
+}

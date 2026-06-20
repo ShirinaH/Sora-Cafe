@@ -9,6 +9,7 @@
 html,
 body,
 #root {
+  height: 100%;
   min-height: 100%;
 }
 
@@ -19,9 +20,6 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background: var(--color-bg);
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(184, 212, 232, 0.4) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(168, 213, 186, 0.2) 0%, transparent 40%);
 }
 
 h1,
@@ -47,18 +45,20 @@ a {
   color: var(--color-accent-dark);
 }
 
+/* Full-bleed shell — scenes handle their own sizing */
 .app-shell {
   min-height: 100vh;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: var(--space-lg);
+  position: relative;
 }
 
+/* Shared UI primitives */
 .page-header {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  margin-bottom: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  position: relative;
+  z-index: 10;
 }
 
 .back-btn {
@@ -67,7 +67,8 @@ a {
   gap: var(--space-xs);
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-full);
-  background: var(--color-surface);
+  background: rgba(255, 248, 240, 0.92);
+  backdrop-filter: blur(4px);
   color: var(--color-accent-dark);
   font-size: 0.9rem;
   font-weight: 500;
@@ -88,6 +89,10 @@ a {
 .breadcrumb {
   font-size: 0.85rem;
   color: var(--color-text-muted);
+  background: rgba(255, 248, 240, 0.85);
+  backdrop-filter: blur(4px);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
 }
 
 .breadcrumb strong {
@@ -201,31 +206,72 @@ a {
   border: 0;
 }
 
+/* ── Keyframes ─────────────────────────────────────────────── */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-6px); }
-  40%, 80% { transform: translateX(6px); }
+  20%, 60%  { transform: translateX(-6px); }
+  40%, 80%  { transform: translateX(6px); }
 }
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50%       { transform: scale(1.05); }
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50%       { transform: translateY(-8px); }
 }
 
-.fade-in {
-  animation: fadeIn var(--transition-normal) ease-out;
+@keyframes writeIn {
+  from { opacity: 0; transform: scale(0.7) translateY(4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-.shake {
-  animation: shake 400ms ease-in-out;
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(-12px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
+
+@keyframes popIn {
+  0%   { transform: scale(0.8); opacity: 0.7; }
+  60%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes flyOut {
+  0%   { opacity: 1; transform: scale(1) translate(0, 0); }
+  70%  { opacity: 0.7; transform: scale(0.5) translate(var(--fly-x, 60px), var(--fly-y, -80px)); }
+  100% { opacity: 0; transform: scale(0.2) translate(var(--fly-x, 60px), var(--fly-y, -80px)); }
+}
+
+@keyframes pencilBob {
+  0%, 100% { transform: rotate(-30deg) translateY(0); }
+  50%       { transform: rotate(-30deg) translateY(-4px); }
+}
+
+@keyframes bubblePop {
+  0%   { opacity: 0; transform: scale(0.7) translateY(8px); }
+  70%  { transform: scale(1.05) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in  { animation: fadeIn  var(--transition-normal) ease-out; }
+.shake    { animation: shake   400ms ease-in-out; }
+.float-in { animation: floatIn 300ms ease-out both; }

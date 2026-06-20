@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useParams, useLocation } from 'react-router-dom';
-import LevelMap from './components/LevelMap';
+import CafeExterior from './components/CafeExterior';
 import ShiftSetup, { DEFAULT_CONFIG } from './components/ShiftSetup';
 import GameBoard from './components/GameBoard';
 import { getLevelById } from './data/levels';
 
 function HomePage() {
   const navigate = useNavigate();
-
   return (
-    <LevelMap onSelectLevel={(levelId) => navigate(`/setup/${levelId}`)} />
+    <CafeExterior onSelectLevel={(levelId) => navigate(`/setup/${levelId}`)} />
   );
 }
 
@@ -67,9 +66,9 @@ export default function App() {
     <BrowserRouter>
       <div className="app-shell">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/"               element={<HomePage />} />
           <Route path="/setup/:levelId" element={<SetupPage />} />
-          <Route path="/play/:levelId" element={<PlayPage />} />
+          <Route path="/play/:levelId"  element={<PlayPage />} />
         </Routes>
       </div>
     </BrowserRouter>

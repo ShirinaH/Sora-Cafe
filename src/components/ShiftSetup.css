@@ -1,10 +1,43 @@
-.setup-card h1 {
-  font-size: 1.5rem;
+.shift-setup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.setup-header {
+  margin-bottom: 0;
+}
+
+.setup-card {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 248, 240, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.setup-card-top {
+  margin-bottom: var(--space-lg);
+}
+
+.setup-zone-badge {
+  display: inline-block;
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   margin-bottom: var(--space-sm);
 }
 
+.setup-card h1 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-xs);
+}
+
 .setup-level-name {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color-accent);
   margin-bottom: var(--space-xs);
@@ -12,7 +45,7 @@
 
 .setup-desc {
   color: var(--color-text-muted);
-  margin-bottom: var(--space-xl);
+  font-size: 0.9rem;
 }
 
 .setup-field {
