@@ -1,0 +1,62 @@
+.game-main {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-xl);
+  align-items: end;
+}
+
+.game-play-area {
+  position: relative;
+}
+
+.distractor {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  display: flex;
+  gap: var(--space-md);
+  font-size: 1.5rem;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.distractor .steam {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.distractor .bell {
+  animation: shake 3s ease-in-out infinite;
+}
+
+.study-hint {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-top: var(--space-md);
+}
+
+.replay-btn {
+  display: block;
+  margin: var(--space-lg) auto 0;
+}
+
+.game-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: var(--space-lg);
+}
+
+@media (max-width: 700px) {
+  .game-main {
+    grid-template-columns: 1fr;
+  }
+
+  .game-sidebar {
+    order: -1;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 0;
+  }
+}

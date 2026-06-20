@@ -1,0 +1,34 @@
+.setup-card h1 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.setup-level-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: var(--space-xs);
+}
+
+.setup-desc {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xl);
+}
+
+.setup-field {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-lg);
+}
+
+.setup-field legend {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
+}
+
+.setup-start {
+  width: 100%;
+  margin-top: var(--space-md);
+}
