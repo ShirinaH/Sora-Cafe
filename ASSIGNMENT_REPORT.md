@@ -84,7 +84,7 @@ The live prototype combines Storyboard A's calm card flow with Storyboard B's re
 ### b. Portfolio link
 
 **Portfolio:** [YOUR PORTFOLIO URL]  
-**Live game (also linked from portfolio):** [YOUR DEPLOYED URL]
+**Live game (also linked from portfolio):** https://shirinah.github.io/Sora-Cafe/
 
 ---
 
