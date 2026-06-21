@@ -2,17 +2,17 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--color-bg);
 }
 
-/* ── Floating top bar ── */
 .game-topbar {
   display: flex;
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-sm) var(--space-lg);
-  background: rgba(255, 248, 240, 0.9);
+  background: rgba(253, 246, 236, 0.92);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(197, 217, 234, 0.5);
+  border-bottom: 2px solid var(--vintage-line);
   position: sticky;
   top: 0;
   z-index: 20;
@@ -25,12 +25,12 @@
   flex-shrink: 0;
 }
 
-/* ── Scene ── */
 .game-scene {
   flex: 1;
   position: relative;
   display: flex;
   flex-direction: column;
+  background: var(--color-bg);
 }
 
 .ordering-scene,
@@ -38,7 +38,6 @@
   flex: 1;
 }
 
-/* ── Replay bar ── */
 .replay-bar {
   position: absolute;
   bottom: var(--space-lg);
@@ -48,7 +47,7 @@
 }
 
 .replay-btn {
-  background: rgba(255, 248, 240, 0.92);
+  background: rgba(253, 246, 236, 0.92);
   backdrop-filter: blur(4px);
 }
 

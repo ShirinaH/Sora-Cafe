@@ -6,11 +6,11 @@ Use this outline when writing your PDF report. Fill in portfolio and GitHub link
 
 ## 1. Game Concept
 
-**Name:** Momo's Café Memory (ももカフェ)
+**Name:** Sora Café (空カフェ)
 
 **Type:** Sequence recall memory game (Simon-style, café-themed)
 
-**Mechanic:** The game displays a customer order as a sequence of menu icons. After a study phase, the player reproduces the order by tapping items in the correct sequence. Momo the cat barista is the player avatar progressing through café shift levels.
+**Mechanic:** The game displays a customer order as a sequence of menu icons. After a study phase, the player reproduces the order by tapping items in the correct sequence. The player progresses through café shift levels across Counter, Patio, and Rooftop zones.
 
 **Memory tested:** Short-term / working memory for ordered sequences.
 
@@ -83,7 +83,7 @@ Create in Figma. Each storyboard: level select → gameplay (success + fail) →
 |-----------|-------------|
 | **Proximity** | Order slots grouped on one tray; level cards stacked as a shift list |
 | **Similarity** | All menu buttons same size/shape; chips share pill styling |
-| **Figure/Ground** | Cream tray on blue background; Momo as focal character |
+| **Figure/Ground** | Cream tray on blue background; café exterior as focal scene |
 | **Continuity** | Zone path (Counter → Patio → Rooftop) connects levels |
 | **Closure** | Empty dashed slots imply incomplete order |
 
@@ -120,7 +120,7 @@ State which tools (e.g. Cursor, ChatGPT) and that you reviewed, edited, and test
 
 - [ ] Storyboard A: Level map mockup
 - [ ] Storyboard A: Study phase + recall phase
-- [ ] Storyboard A: Win screen with Momo celebrate
+- [ ] Storyboard A: Win screen with shift complete message
 - [ ] Storyboard B: Setup with large toggles
 - [ ] Storyboard B: Gameplay with sidebar layout
 - [ ] Storyboard B: Fail state with gentle messaging

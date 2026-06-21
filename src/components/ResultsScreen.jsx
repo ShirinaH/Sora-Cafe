@@ -1,6 +1,5 @@
 import './ResultsScreen.css';
 import { getLevelById, LEVELS } from '../data/levels';
-import MomoCharacter from './MomoCharacter';
 
 export default function ResultsScreen({ levelId, won, livesLeft, maxLives, onNext, onRetry, onHome }) {
   const level = getLevelById(levelId);
@@ -10,12 +9,10 @@ export default function ResultsScreen({ levelId, won, livesLeft, maxLives, onNex
   return (
     <div className="results-screen fade-in">
       <div className="card results-card">
-        <MomoCharacter mood={won ? 'celebrate' : 'sad'} />
-
         {won ? (
           <>
             <h1>Shift Complete!</h1>
-            <p className="results-subtitle">{level.name} — {level.zone}</p>
+            <p className="results-subtitle">{level.name} · {level.zone}</p>
             <div className="stars" aria-label={`${stars} out of 3 stars`}>
               {[1, 2, 3].map((s) => (
                 <span key={s} className={`star ${s <= stars ? 'filled' : ''}`}>
@@ -23,7 +20,7 @@ export default function ResultsScreen({ levelId, won, livesLeft, maxLives, onNex
                 </span>
               ))}
             </div>
-            <p className="results-message">Momo served every order perfectly. Well done!</p>
+            <p className="results-message">Every order served perfectly. Well done!</p>
             <div className="results-actions">
               {hasNextLevel && (
                 <button type="button" className="btn-primary" onClick={onNext}>
@@ -38,9 +35,9 @@ export default function ResultsScreen({ levelId, won, livesLeft, maxLives, onNex
         ) : (
           <>
             <h1>Shift Over</h1>
-            <p className="results-subtitle">{level.name} — {level.zone}</p>
+            <p className="results-subtitle">{level.name} · {level.zone}</p>
             <p className="results-message">
-              Don&apos;t worry — even the best baristas need practice. Try again!
+              Don&apos;t worry. Even the best baristas need practice. Try again!
             </p>
             <div className="results-actions">
               <button type="button" className="btn-primary" onClick={onRetry}>

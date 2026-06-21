@@ -7,13 +7,7 @@ npm install --save-dev gh-pages
 npm run deploy
 ```
 
-Update `package.json` `"build:gh-pages"` base path if your repo name differs from `momo-cafe-memory`.
-
-Add homepage field (optional, for gh-pages CLI):
-
-```json
-"homepage": "https://YOUR_USERNAME.github.io/momo-cafe-memory"
-```
+Base path is set to `/Sora-Cafe/` for [github.com/ShirinaH/Sora-Cafe](https://github.com/ShirinaH/Sora-Cafe).
 
 ## Vercel (alternative)
 

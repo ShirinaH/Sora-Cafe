@@ -1,0 +1,61 @@
+.vintage-frame {
+  position: relative;
+  background:
+    linear-gradient(165deg, var(--vintage-cream) 0%, var(--vintage-parchment) 55%, rgba(245, 232, 218, 0.96) 100%);
+  border: 2px solid var(--vintage-rose);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  box-shadow:
+    0 4px 22px var(--vintage-shadow),
+    inset 0 1px 0 rgba(255, 252, 246, 0.9),
+    inset 0 0 0 1px rgba(255, 248, 240, 0.7),
+    inset 0 0 0 3px var(--vintage-line);
+  backdrop-filter: blur(6px);
+}
+
+.vintage-frame::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(180, 148, 120, 0.35);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.vintage-frame__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.vintage-corner {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  color: var(--vintage-rose-deep);
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 1px 2px rgba(90, 60, 45, 0.12));
+}
+
+.vintage-corner--tl {
+  top: -6px;
+  left: -6px;
+}
+
+.vintage-corner--tr {
+  top: -6px;
+  right: -6px;
+  transform: scaleX(-1);
+}
+
+.vintage-corner--bl {
+  bottom: -6px;
+  left: -6px;
+  transform: scaleY(-1);
+}
+
+.vintage-corner--br {
+  bottom: -6px;
+  right: -6px;
+  transform: scale(-1);
+}

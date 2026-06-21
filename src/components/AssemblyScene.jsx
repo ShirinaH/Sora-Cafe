@@ -1,151 +1,118 @@
 import { useState, useCallback } from 'react';
+import VintageFrame from './VintageFrame';
+import MenuItemVisual from './MenuItemVisual';
 import './AssemblyScene.css';
-import MomoCharacter from './MomoCharacter';
 
-/* ── Order ticket clipboard (right panel) ── */
-function OrderTicket({ sequenceItems, filledItems }) {
+function PackedBag({ filledItems, totalItems, shake }) {
   return (
-    <div className="ticket-wrap">
-      <svg viewBox="0 0 150 40" className="ticket-header-svg" aria-hidden="true">
-        <rect x="5" y="5" width="140" height="30" rx="6" fill="#fff8f0" stroke="#c5d9ea" strokeWidth="1.5" />
-        <rect x="50" y="2" width="50" height="16" rx="6" fill="#6b8cae" />
-        <rect x="60" y="0" width="30" height="8"  rx="4" fill="#4a6d8c" />
-        <text x="75" y="15" textAnchor="middle" fill="white" fontSize="8" fontWeight="700">ORDER</text>
-      </svg>
-      <ul className="ticket-list" aria-label="Order to pack">
-        {sequenceItems.map((item, i) => {
-          const done = i < filledItems.length;
-          return (
-            <li
-              key={i}
-              className={`ticket-item ${done ? 'done' : ''} ${i === filledItems.length ? 'active' : ''}`}
-              aria-label={`${item.name}${done ? ', packed' : i === filledItems.length ? ', next' : ''}`}
-            >
-              <span className="ti-num">{i + 1}</span>
-              <span className="ti-emoji">{item.emoji}</span>
-              <span className="ti-name">{item.name}</span>
-              <span className="ti-check" aria-hidden="true">{done ? '✓' : '·'}</span>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-}
+    <div
+      className={`bag-wrap ${shake ? 'shake' : ''}`}
+      aria-label={`${filledItems.length} of ${totalItems} items packed`}
+    >
+      <svg viewBox="0 0 140 175" className="bag-svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="canopyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#fff8f4" />
+            <stop offset="100%" stopColor="#fbeae6" />
+          </linearGradient>
+          <linearGradient id="boxBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#fdf6f0" />
+            <stop offset="100%" stopColor="#f6e6e0" />
+          </linearGradient>
+          <linearGradient id="sidePanel" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#f3ddd6" />
+            <stop offset="100%" stopColor="#eccfc6" />
+          </linearGradient>
+          <linearGradient id="ribbonGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#f0bcc0" />
+            <stop offset="100%" stopColor="#dd9aa2" />
+          </linearGradient>
+        </defs>
 
-/* ── Packed bag ── */
-function PackedBag({ filledItems, shake }) {
-  return (
-    <div className={`bag-wrap ${shake ? 'shake' : ''}`} aria-label={`${filledItems.length} items packed`}>
-      <svg viewBox="0 0 120 160" className="bag-svg" aria-hidden="true">
-        {/* bag body */}
-        <path d="M 20 60 Q 18 150 60 155 Q 102 150 100 60 Z" fill="#d4eaf8" stroke="#9ec4d8" strokeWidth="2.5" />
-        {/* bag handle */}
-        <path d="M 38 60 Q 38 30 60 28 Q 82 30 82 60"
-              fill="none" stroke="#6b8cae" strokeWidth="5" strokeLinecap="round" />
-        {/* bag fold */}
-        <path d="M 20 60 Q 60 70 100 60" fill="none" stroke="#9ec4d8" strokeWidth="2" />
-        {/* bag logo */}
-        <text x="60" y="100" textAnchor="middle" fontSize="11" fill="#6b8cae" fontWeight="700">空</text>
-        <text x="60" y="113" textAnchor="middle" fontSize="8"  fill="#8ab0cc">SORA</text>
+        {/* finial */}
+        <line x1="70" y1="7" x2="70" y2="24" stroke="#d9b88a" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="70" cy="7" r="3" fill="#e7c79a" />
+
+        {/* ribbon bow */}
+        <path d="M 67 27 Q 61 42 56 50 L 65 46 L 68 31 Z" fill="#e3a6ae" />
+        <path d="M 73 27 Q 79 42 84 50 L 75 46 L 72 31 Z" fill="#e3a6ae" />
+        <path d="M 70 28 Q 51 17 49 28 Q 49 37 70 31 Z" fill="url(#ribbonGrad)" stroke="#cf8f98" strokeWidth="0.8" />
+        <path d="M 70 28 Q 89 17 91 28 Q 91 37 70 31 Z" fill="url(#ribbonGrad)" stroke="#cf8f98" strokeWidth="0.8" />
+        <rect x="65" y="25" width="10" height="9" rx="2.5" fill="#d999a1" stroke="#cf8f98" strokeWidth="0.8" />
+
+        {/* canopy / carousel roof */}
+        <path d="M 70 33 C 41 33 21 54 19 78 L 121 78 C 119 54 99 33 70 33 Z"
+              fill="url(#canopyGrad)" stroke="#caa39a" strokeWidth="1.6" />
+        <g stroke="#ecccc4" strokeWidth="1">
+          <line x1="70" y1="36" x2="40" y2="77" />
+          <line x1="70" y1="36" x2="55" y2="77" />
+          <line x1="70" y1="36" x2="70" y2="77" />
+          <line x1="70" y1="36" x2="85" y2="77" />
+          <line x1="70" y1="36" x2="100" y2="77" />
+        </g>
+        <path d="M 19 78 q 8.5 8 17 0 q 8.5 8 17 0 q 8.5 8 17 0 q 8.5 8 17 0 q 8.5 8 17 0 q 8.5 8 17 0"
+              fill="url(#canopyGrad)" stroke="#caa39a" strokeWidth="1.4" />
+        <g fill="#e7c483">
+          <path d="M 48 52 l 1 2.4 2.5 .3 -1.8 1.7 .5 2.5-2.2-1.3-2.2 1.3 .5-2.5-1.8-1.7 2.5-.3 Z" />
+          <path d="M 70 47 l 1 2.4 2.5 .3 -1.8 1.7 .5 2.5-2.2-1.3-2.2 1.3 .5-2.5-1.8-1.7 2.5-.3 Z" />
+          <path d="M 92 52 l 1 2.4 2.5 .3 -1.8 1.7 .5 2.5-2.2-1.3-2.2 1.3 .5-2.5-1.8-1.7 2.5-.3 Z" />
+          <circle cx="59" cy="64" r="1" />
+          <circle cx="81" cy="64" r="1" />
+        </g>
+
+        {/* box body (hexagonal) */}
+        <path d="M 24 86 L 40 92 L 40 150 L 24 142 Z" fill="url(#sidePanel)" stroke="#caa39a" strokeWidth="1.2" />
+        <path d="M 116 86 L 100 92 L 100 150 L 116 142 Z" fill="url(#sidePanel)" stroke="#caa39a" strokeWidth="1.2" />
+        <path d="M 40 92 L 100 92 L 100 150 L 70 158 L 40 150 Z" fill="url(#boxBody)" stroke="#caa39a" strokeWidth="1.5" />
+
+        {/* arched window */}
+        <path d="M 50 134 L 50 117 Q 50 102 70 102 Q 90 102 90 117 L 90 134 Z"
+              fill="#e9dcef" stroke="#caa39a" strokeWidth="1.2" />
+        <path d="M 50 112 q 5 5 10 0 q 5 5 10 0 q 5 5 10 0 q 5 5 10 0" fill="#e7b9c0" />
+
+        {/* carousel horse */}
+        <line x1="70" y1="103" x2="70" y2="134" stroke="#e7c483" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="70" cy="103" r="2.2" fill="#edd29a" />
+        <g stroke="#caa39a" strokeWidth="0.7" strokeLinejoin="round">
+          <path d="M 79 114 q 8 3 6 11 q -1 3 -3 4 q 3 -6 -1 -9 q -2 -2 -3 -4 Z" fill="#eeb9c2" />
+          <ellipse cx="68" cy="120" rx="10" ry="6" fill="#fbeee8" />
+          <path d="M 60 117 Q 55 111 54 106 Q 53 103 56 103 Q 59 104 60 109 L 64 116 Z" fill="#fbeee8" />
+          <path d="M 54 106 Q 50 105 49 108 Q 50 110 54 109 Z" fill="#fbeee8" />
+          <path d="M 56 103 l 1 -3 2 2 Z" fill="#fbeee8" />
+          <path d="M 58 104 Q 62 107 61 112 Q 60 108 57 107 Z" fill="#eeb9c2" stroke="none" />
+          <path d="M 64 115 q 5 -2 8 0 l -1 4 q -3 -1 -6 0 Z" fill="#eeb9c2" stroke="none" />
+        </g>
+        <g stroke="#fbeee8" strokeWidth="2" strokeLinecap="round" fill="none">
+          <path d="M 62 125 l -2 6" />
+          <path d="M 67 126 l -1 6" />
+          <path d="M 72 126 l 1 6" />
+          <path d="M 76 125 l 2 6" />
+        </g>
+
+        {/* heart + SUGAR DAY */}
+        <path d="M 70 140 l -2.4 -2.4 a 1.7 1.7 0 0 1 2.4 -0.2 a 1.7 1.7 0 0 1 2.4 0.2 Z" fill="#dd9aa2" />
+        <text x="70" y="150" textAnchor="middle" fontSize="6" fill="#b07c84"
+              fontWeight="700" letterSpacing="1.4">SUGAR DAY</text>
       </svg>
 
-      {/* stacked items in bag */}
-      <div className="bag-items">
-        {filledItems.map((item, i) => (
+      <div className="bag-progress">
+        <span className="bag-count">{filledItems.length}</span>
+        <span className="bag-sep">/</span>
+        <span className="bag-total">{totalItems}</span>
+      </div>
+
+      <div className="bag-stars">
+        {Array.from({ length: totalItems }, (_, i) => (
           <span
             key={i}
-            className="bag-item-icon"
-            style={{ animationDelay: `${i * 40}ms` }}
+            className={`bag-star ${i < filledItems.length ? 'filled' : ''}`}
             aria-hidden="true"
           >
-            {item.emoji}
+            ✦
           </span>
         ))}
       </div>
     </div>
-  );
-}
-
-/* ── Display case background ── */
-function DisplayCaseBackground() {
-  return (
-    <svg
-      viewBox="0 0 900 480"
-      className="display-bg-svg"
-      aria-hidden="true"
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <defs>
-        <linearGradient id="asmWallGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#d8eef8" />
-          <stop offset="100%" stopColor="#e8f6ff" />
-        </linearGradient>
-        <linearGradient id="caseGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#f0f8ff" />
-          <stop offset="60%"  stopColor="#e0f0fc" />
-          <stop offset="100%" stopColor="#c8dff0" />
-        </linearGradient>
-        <linearGradient id="shelfGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#f5f0e8" />
-          <stop offset="100%" stopColor="#ede5d8" />
-        </linearGradient>
-      </defs>
-
-      {/* Wall */}
-      <rect width="900" height="480" fill="url(#asmWallGrad)" />
-
-      {/* Wall décor */}
-      <rect x="0" y="0" width="900" height="60" fill="#c8dff0" opacity="0.4" />
-      <rect x="0" y="56" width="900" height="6"  rx="2" fill="#a0c4e0" opacity="0.5" />
-
-      {/* Hanging lights */}
-      {[160, 380, 600, 780].map((x, i) => (
-        <g key={i}>
-          <line x1={x} y1="0" x2={x} y2="40" stroke="#8ab8d8" strokeWidth="1.5" />
-          <ellipse cx={x} cy="43" rx="14" ry="6"  fill="#d0e8f8" />
-          <ellipse cx={x} cy="50" rx="12" ry="18" fill="#f5ffff" stroke="#c0d8f0" strokeWidth="1.5" />
-        </g>
-      ))}
-
-      {/* Display case frame */}
-      <rect x="60" y="180" width="680" height="200" rx="10" fill="url(#caseGrad)"
-            stroke="#8ab8d8" strokeWidth="3" />
-      {/* Glass tint */}
-      <rect x="63" y="183" width="674" height="194" rx="8" fill="rgba(200,230,250,0.25)" />
-      {/* Shelf inside case */}
-      <rect x="70" y="320" width="664" height="12" rx="4" fill="url(#shelfGrad)" />
-      {/* Dividers */}
-      {[0,1,2,3,4,5].map(i => (
-        <line key={i} x1={148 + i * 112} y1="183" x2={148 + i * 112} y2="370"
-              stroke="#a0c4e0" strokeWidth="1" opacity="0.5" />
-      ))}
-      {/* Case top label */}
-      <rect x="280" y="168" width="240" height="18" rx="8" fill="#6b8cae" />
-      <text x="400" y="181" textAnchor="middle" fill="white" fontSize="9" fontWeight="600" letterSpacing="1">
-        DISPLAY CASE
-      </text>
-
-      {/* Case base / counter */}
-      <rect x="50"  y="375" width="700" height="60" rx="6" fill="#c8a87a" />
-      <rect x="50"  y="372" width="700" height="10" rx="4" fill="#b8956a" />
-
-      {/* Floor */}
-      <rect x="0" y="430" width="900" height="50" fill="#e8ddd0" />
-      {Array.from({ length: 9 }, (_, i) => (
-        <rect key={i} x={i * 100} y="432" width="97" height="20" rx="1"
-              fill={(i % 2 === 0) ? '#e0d5c8' : '#d8ccbe'} opacity="0.7" />
-      ))}
-
-      {/* Wall plants */}
-      <ellipse cx="22"  cy="200" rx="18" ry="22" fill="#6ab06a" opacity="0.75" />
-      <ellipse cx="10"  cy="192" rx="12" ry="16" fill="#5aa05a" opacity="0.75" />
-      <rect    x="10"   y="218"  width="18" height="14" rx="6" fill="#c8956a" />
-
-      <ellipse cx="878" cy="200" rx="18" ry="22" fill="#6ab06a" opacity="0.75" />
-      <ellipse cx="890" cy="192" rx="12" ry="16" fill="#5aa05a" opacity="0.75" />
-      <rect    x="872"  y="218"  width="18" height="14" rx="6" fill="#c8956a" />
-    </svg>
   );
 }
 
@@ -160,57 +127,54 @@ export default function AssemblyScene({ menuPool, filledItems, sequenceItems, on
 
   return (
     <div className="assembly-scene">
-      <DisplayCaseBackground />
+      <img
+        src="/scenes/assembly-counter.png"
+        alt=""
+        className="scene-bg"
+        aria-hidden="true"
+      />
 
       <div className="assembly-stage">
-        {/* Momo (left) */}
-        <div className="assembly-momo">
-          <MomoCharacter
-            mood={shake ? 'sad' : filledItems.length > 0 ? 'happy' : 'thinking'}
-            pose="counter"
-          />
-        </div>
-
-        {/* Display case items (centre) */}
         <div className="case-grid-wrap">
-          <div
-            className="case-grid"
-            role="group"
-            aria-label="Display case — tap items to pack in order"
-          >
-            {menuPool.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                className="case-item"
-                style={{ backgroundColor: item.color }}
-                onClick={() => handleTap(item.id)}
-                disabled={disabled}
-                aria-label={item.name}
-                data-pop={popKey[item.id] ?? 0}
-              >
-                <span
-                  className="case-emoji"
-                  key={popKey[item.id]}
-                  style={{ animation: popKey[item.id] ? 'popIn 300ms ease-out both' : 'none' }}
-                  aria-hidden="true"
+          <VintageFrame className="interactive-panel">
+            <p className="panel-label">Tap items in order</p>
+            <div
+              className="case-grid"
+              role="group"
+              aria-label="Display case: tap items to pack in order"
+            >
+              {menuPool.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className="case-item"
+                  style={{ backgroundColor: item.color }}
+                  onClick={() => handleTap(item.id)}
+                  disabled={disabled}
+                  aria-label={item.name}
+                  data-pop={popKey[item.id] ?? 0}
                 >
-                  {item.emoji}
-                </span>
-                <span className="case-name">{item.name}</span>
-              </button>
-            ))}
-          </div>
+                  <div className="case-visual-wrap">
+                    <MenuItemVisual
+                      item={item}
+                      className="case-visual"
+                      size="case"
+                      key={popKey[item.id]}
+                      style={{ animation: popKey[item.id] ? 'popIn 300ms ease-out both' : 'none' }}
+                    />
+                  </div>
+                  <span className="case-name">{item.name}</span>
+                </button>
+              ))}
+            </div>
+          </VintageFrame>
         </div>
 
-        {/* Right panel: ticket + bag */}
         <div className="assembly-right">
-          <PackedBag filledItems={filledItems} shake={shake} />
-          <OrderTicket sequenceItems={sequenceItems} filledItems={filledItems} />
+          <PackedBag filledItems={filledItems} totalItems={sequenceItems.length} shake={shake} />
         </div>
       </div>
 
-      {/* ARIA live */}
       <div aria-live="polite" aria-atomic="true" className="sr-only">
         {`${filledItems.length} of ${sequenceItems.length} items packed`}
       </div>

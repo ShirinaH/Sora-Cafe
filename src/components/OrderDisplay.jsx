@@ -1,3 +1,4 @@
+import MenuItemVisual from './MenuItemVisual';
 import './OrderDisplay.css';
 
 function OrderSlot({ item, active, filled, index }) {
@@ -8,7 +9,7 @@ function OrderSlot({ item, active, filled, index }) {
     >
       {filled && item ? (
         <span className="slot-item" style={{ backgroundColor: item.color }}>
-          <span className="slot-emoji">{item.emoji}</span>
+          <MenuItemVisual item={item} size="sm" className="slot-visual" />
         </span>
       ) : (
         <span className="slot-empty" />

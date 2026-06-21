@@ -2,7 +2,6 @@ import './LevelMap.css';
 import { useState } from 'react';
 import { LEVELS, ZONES } from '../data/levels';
 import { isLevelUnlocked, resetProgress } from '../utils/progressStorage';
-import MomoCharacter from './MomoCharacter';
 
 export default function LevelMap({ onSelectLevel }) {
   const unlocked = LEVELS.filter((l) => isLevelUnlocked(l.id));
@@ -20,11 +19,19 @@ export default function LevelMap({ onSelectLevel }) {
     <div className="level-map fade-in">
       <header className="level-map-header">
         <div>
-          <p className="level-map-subtitle">空カフェ · Sora Café</p>
-          <h1>Momo&apos;s Café Memory</h1>
-          <p className="level-map-tagline">ももカフェ — Remember every order, one shift at a time.</p>
+          <p className="level-map-subtitle">空カフェ</p>
+          <h1>
+            <a
+              href="https://shirinah.github.io/My-Personal-Portfolio/#sora-cafe-memory"
+              className="site-title-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Sora Café
+            </a>
+          </h1>
+          <p className="level-map-tagline">空カフェ · A cozy café sequence memorization game</p>
         </div>
-        <MomoCharacter mood="idle" />
       </header>
 
       <div className="zone-path" aria-label="Café zones progress path">

@@ -2,9 +2,10 @@ import './ShiftSetup.css';
 import { getLevelById, DIFFICULTY_PRESETS } from '../data/levels';
 import { MENU_SETS } from '../data/menuItems';
 import CafeInterior from './CafeInterior';
+import SetupDecorations from './SetupDecorations';
 
 const DEFAULT_CONFIG = {
-  menuSet: 'full',
+  menuSet: 'all',
   difficulty: 'beginner',
   sound: true,
 };
@@ -16,17 +17,20 @@ export default function ShiftSetup({ levelId, config, onConfigChange, onStart, o
 
   return (
     <CafeInterior>
-      <div className="shift-setup fade-in">
-        <header className="page-header setup-header">
-          <button type="button" className="back-btn" onClick={onBack}>
-            ← Back
-          </button>
-          <p className="breadcrumb">
-            Sora Café &gt; <strong>{level.zone}</strong> &gt; Setup
-          </p>
-        </header>
+      <SetupDecorations />
 
-        <div className="card setup-card">
+      <div className="shift-setup-layout">
+        <div className="shift-setup-main">
+          <header className="page-header setup-header">
+            <button type="button" className="back-btn" onClick={onBack}>
+              ← Back
+            </button>
+            <p className="breadcrumb">
+              Sora Café &gt; <strong>{level.zone}</strong> &gt; Setup
+            </p>
+          </header>
+
+          <div className="card setup-card">
           <div className="setup-card-top">
             <span className="setup-zone-badge">{level.zone}</span>
             <h1>Shift Setup</h1>
@@ -94,9 +98,10 @@ export default function ShiftSetup({ levelId, config, onConfigChange, onStart, o
             </div>
           </fieldset>
 
-          <button type="button" className="btn-primary setup-start" onClick={onStart}>
-            Start Shift →
-          </button>
+            <button type="button" className="btn-primary setup-start" onClick={onStart}>
+              Start Shift →
+            </button>
+          </div>
         </div>
       </div>
     </CafeInterior>

@@ -1,6 +1,6 @@
-# Momo's Café Memory (ももカフェ)
+# Sora Café (空カフェ)
 
-A pastel Japanese café-themed **sequence recall** memory game for SEG3125 Assignment 3. Play as **Momo**, a cat barista at Sora Café, remembering customer orders across five shift levels.
+A pastel Japanese café-themed **sequence recall** memory game for SEG3125 Assignment 3. Remember customer orders across five shift levels at Sora Café.
 
 ## Play locally
 
@@ -20,11 +20,10 @@ npm run preview
 
 ## Deploy to GitHub Pages
 
-1. Create a GitHub repo named `momo-cafe-memory` (or update `--base` in `package.json` to match your repo name).
+1. Repo name: [Sora-Cafe](https://github.com/ShirinaH/Sora-Cafe)
 2. Install gh-pages: `npm install --save-dev gh-pages`
-3. Add to `package.json` under `"homepage"`: `"https://YOUR_USERNAME.github.io/momo-cafe-memory"`
-4. Run: `npm run deploy`
-5. Enable GitHub Pages from the `gh-pages` branch in repo Settings.
+3. Run: `npm run deploy`
+4. Enable GitHub Pages from the `gh-pages` branch in repo Settings.
 
 ### Deploy to Vercel
 
@@ -44,7 +43,7 @@ npm run preview
 
 ## Report resources
 
-See [REPORT_OUTLINE.md](./REPORT_OUTLINE.md) for persona definitions, Gestalt analysis notes, storyboard checklist, and GenAI acknowledgement template.
+See [REPORT_OUTLINE.md](./REPORT_OUTLINE.md) and [ASSIGNMENT_REPORT.md](./ASSIGNMENT_REPORT.md).
 
 ## Tech stack
 

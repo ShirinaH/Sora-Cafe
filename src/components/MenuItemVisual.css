@@ -1,0 +1,50 @@
+.menu-item-visual {
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.menu-item-visual--sm {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.menu-item-visual--md {
+  width: 3.25rem;
+  height: 3.25rem;
+}
+
+.menu-item-visual--lg {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.menu-item-visual--emoji.menu-item-visual--sm {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  text-align: center;
+}
+
+.menu-item-visual--emoji.menu-item-visual--md {
+  font-size: 2rem;
+  line-height: 3.25rem;
+  text-align: center;
+}
+
+.menu-item-visual--emoji.menu-item-visual--lg {
+  font-size: 2.75rem;
+  line-height: 4.5rem;
+  text-align: center;
+}
+
+.menu-item-visual--case {
+  width: 4.75rem;
+  height: 4.75rem;
+}
+
+.menu-item-visual--emoji.menu-item-visual--case {
+  font-size: 2.75rem;
+  line-height: 4.75rem;
+  text-align: center;
+}

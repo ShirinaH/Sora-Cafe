@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'momo-cafe-unlocked-levels';
+const STORAGE_KEY = 'sora-cafe-unlocked-levels';
 
 export function getUnlockedLevels() {
   try {

@@ -1,0 +1,87 @@
+.setup-decor-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 4.5vh, 52px);
+  padding: var(--space-xl) 0;
+}
+
+.setup-decor-row {
+  flex: 0 0 auto;
+  height: clamp(52px, 6.5vh, 76px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  opacity: var(--row-opacity);
+}
+
+.setup-decor-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: decorMarquee var(--row-duration) linear infinite;
+  animation-delay: var(--row-delay);
+}
+
+.setup-decor-strip {
+  height: 100%;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(90, 60, 45, 0.1));
+}
+
+.setup-decor-row .setup-decor-track {
+  height: 100%;
+  margin-top: 0;
+}
+
+@keyframes decorMarquee {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  12.5% {
+    transform: translateX(-6.25%) translateY(-10px);
+  }
+
+  25% {
+    transform: translateX(-12.5%) translateY(0);
+  }
+
+  37.5% {
+    transform: translateX(-18.75%) translateY(-10px);
+  }
+
+  50% {
+    transform: translateX(-25%) translateY(0);
+  }
+
+  62.5% {
+    transform: translateX(-31.25%) translateY(-10px);
+  }
+
+  75% {
+    transform: translateX(-37.5%) translateY(0);
+  }
+
+  87.5% {
+    transform: translateX(-43.75%) translateY(-10px);
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .setup-decor-track {
+    animation: none;
+    transform: translateX(-10%);
+  }
+}
